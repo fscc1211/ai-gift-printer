@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>LIVE | Good Things Ahead</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:ui-rounded,"Arial Rounded MT Bold",system-ui,sans-serif;color:#9b4b78}body{overflow:hidden}
+.scene{position:relative;width:100%;height:100dvh;overflow:hidden;background:radial-gradient(circle at 14% 15%,#fff8dc 0 2%,transparent 18%),radial-gradient(circle at 88% 22%,#ffe6b3 0 2%,transparent 20%),linear-gradient(160deg,#f6b7d1,#f9d8dc 45%,#e9a5c4 100%);isolation:isolate}
+.scene:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#fff9 1.4px,transparent 2px);background-size:26px 31px;opacity:.52;pointer-events:none}
+.window{position:absolute;top:5%;left:4%;width:34%;height:32%;border:7px solid #fff1e7;border-radius:70px 70px 12px 12px;background:linear-gradient(160deg,#f6adce,#ffe3c7 70%);box-shadow:0 0 25px #fff5,inset 0 0 35px #fff7;opacity:.7}
+.window:after{content:"";position:absolute;top:0;bottom:0;left:48%;border-left:5px solid #fff1e7}
+.sign{position:absolute;right:5%;top:8%;transform:rotate(-7deg);font-size:clamp(11px,3.2vw,20px);text-align:center;background:#fff1e9;padding:9px;border:4px solid #e7a7b5;border-radius:8px;color:#b36c85;font-weight:900;box-shadow:0 5px 10px #a4557333}
+.hearts{position:absolute;inset:0;pointer-events:none}.hearts span{position:absolute;animation:float 5s ease-in-out infinite;filter:drop-shadow(0 2px 3px #ad678877)}.hearts span:nth-child(1){left:6%;top:38%;font-size:26px}.hearts span:nth-child(2){left:80%;top:34%;font-size:19px;animation-delay:-2s}.hearts span:nth-child(3){left:26%;top:10%;font-size:25px;animation-delay:-3s}.hearts span:nth-child(4){left:63%;top:62%;font-size:18px}
+.title{position:absolute;left:5%;right:5%;top:1.6%;text-align:center;font-size:clamp(13px,4vw,24px);font-weight:1000;letter-spacing:1.2px;color:#fff;filter:drop-shadow(0 2px 2px #b76c91)}
+.printer{position:absolute;left:4%;top:36%;width:72%;height:29%;border-radius:18% 18% 10% 10%/25% 25% 12% 12%;background:linear-gradient(140deg,#ffe1eb 0%,#ffaed1 35%,#f18eb9 72%,#d56e9c);border:4px solid #ffdce9;box-shadow:inset 0 12px 13px #fff9,inset -13px -7px 20px #a7477655,0 13px 0 #c66a97,0 22px 30px #8c456055;z-index:3}
+.printer:before{content:"";position:absolute;left:8%;right:8%;top:9%;height:23%;border-radius:50%;background:#ffeff4;box-shadow:inset 0 -8px 10px #eaa1c2}
+.face{position:absolute;top:18%;left:26%;width:48%;display:flex;justify-content:space-around;font-size:clamp(17px,5vw,32px);color:#473344;z-index:2}.face:after{content:"ᴗ";position:absolute;top:0;left:46%;font-size:1.2em}.blush{position:absolute;top:32%;left:18%;font-size:12px;color:#e97ca2}.blush.right{left:auto;right:18%}
+.bow{position:absolute;right:2%;top:1%;font-size:clamp(35px,10vw,75px);transform:rotate(-12deg);filter:drop-shadow(0 3px 3px #c45c8a)}
+.slot{position:absolute;left:13%;right:13%;bottom:16%;height:16%;background:#6f3655;border:6px solid #d97ca6;border-radius:15px;box-shadow:inset 0 3px 8px #3b1a35}
+.led{position:absolute;right:5%;bottom:43%;height:30px;width:30px;background:#ffeff6;border:3px solid #dc7fa9;border-radius:50%;box-shadow:0 0 0 5px #e58bb3;color:#ed78ac;text-align:center;font-size:22px}
+.cat{position:absolute;top:26%;left:26%;width:27%;height:17%;z-index:4;animation:bob 2s ease-in-out infinite;filter:drop-shadow(0 6px 7px #8e5c7066)}
+.cat-body{position:absolute;inset:22% 5% 0;border-radius:48% 48% 44% 44%;background:linear-gradient(120deg,#fffaf8,#ffe8e8);border:3px solid #e5c7c7}
+.cat-ear{position:absolute;top:5%;width:35%;height:48%;background:#fff9f7;border:3px solid #e5c7c7;border-radius:10% 90% 12% 30%;transform:rotate(-28deg)}.cat-ear.r{right:0;transform:rotate(115deg)}
+.cat-face{position:absolute;top:44%;left:20%;right:20%;font-size:clamp(14px,4vw,25px);text-align:center;color:#765365;font-weight:900}.cat-paw{position:absolute;bottom:0;left:20%;width:25%;height:22%;background:#fff8f6;border:2px solid #e8c9c8;border-radius:50%;animation:tap .16s infinite alternate}.cat-paw.r{left:auto;right:20%;animation-delay:-.16s}
+.paper-frame{position:absolute;top:61%;bottom:12%;left:13%;width:53%;overflow:hidden;z-index:4;filter:drop-shadow(0 7px 7px #8f547755)}
+.paper{width:100%;height:100%;background:repeating-linear-gradient(180deg,#fff8f5 0 25px,#fff1ee 26px 27px);border:2px solid #f7d7de;border-radius:0 0 9px 9px;padding:12px 9px 20px;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#e9a5c6 transparent}
+.ticket{border:2px dashed #e6a6c2;background:#fffaf9;text-align:center;border-radius:10px;margin-bottom:12px;padding:10px 5px;animation:print .45s both}.ticket.white{background:#fffefd}.ticket.silver{background:linear-gradient(120deg,#fff,#cbd2db,#f8faff);border-color:#a5aebd;color:#626b79}.ticket.gold{background:linear-gradient(120deg,#fff4c3,#e8c56b,#fff6d4);border-color:#c8a14e;color:#886123}
+.ticket .avatar{font-size:clamp(27px,8vw,45px)}.ticket b{display:block;font-size:clamp(12px,3.4vw,19px);overflow-wrap:anywhere}.ticket .gift{display:flex;justify-content:center;align-items:center;gap:5px;font-size:clamp(10px,2.8vw,14px);font-weight:800}.ticket .gift img{width:30px;height:30px;object-fit:contain;border-radius:6px}.ticket p{font-size:clamp(11px,3vw,16px);line-height:1.35}.ticket small{font-size:9px}
+.sidebar{position:absolute;top:45%;right:2%;width:29%;bottom:12%;z-index:5;display:flex;flex-direction:column;gap:8px}
+.panel{background:#fff5f9eF;border:2px solid #f5c3d6;border-radius:15px;padding:8px 5px;box-shadow:0 5px 15px #aa62832c;min-height:0}
+.panel h2{margin:0 0 7px;text-align:center;font-size:clamp(9px,2.45vw,14px);color:#b04b82}.gift-row{display:flex;align-items:center;gap:5px;background:#fff;border-radius:9px;margin:5px 0;padding:4px;font-size:clamp(9px,2.3vw,12px);font-weight:850}.gift-row img{width:32px;height:32px;object-fit:contain;border-radius:7px}.gift-row small{display:block;font-size:9px;font-weight:700}.white-mark{color:#9d8692}.silver-mark{color:#7e8a9c}.gold-mark{color:#b48a32}
+.rank-panel{flex:1;display:flex;flex-direction:column;overflow:hidden}.rank-list{overflow-y:auto;min-height:0;flex:1}.rank{display:flex;justify-content:space-between;gap:3px;padding:5px 3px;border-bottom:1px solid #f4dbe6;font-size:clamp(9px,2.35vw,13px);font-weight:750}.rank span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rank strong{white-space:nowrap;color:#ce6597}
+.status{position:absolute;bottom:6.4%;left:6%;width:88%;border-radius:20px;background:#fff4faed;border:2px solid #eeb7d1;text-align:center;padding:9px 4px;font-weight:900;font-size:clamp(11px,2.8vw,15px);z-index:6}
+.steps{position:absolute;bottom:1.3%;left:5%;right:5%;display:flex;justify-content:space-around;font-size:clamp(9px,2.4vw,13px);font-weight:850;color:#fff;text-shadow:0 2px 3px #b66a8c}
+@keyframes float{50%{transform:translateY(-14px)}}@keyframes bob{50%{transform:translateY(-5px)}}@keyframes tap{to{transform:translateY(7px)}}@keyframes print{from{opacity:0;transform:translateY(-25px)}to{opacity:1;transform:translateY(0)}}
+@media(min-aspect-ratio:3/4){.scene{max-width:540px;margin:auto}.sidebar{right:2%}}
+</style></head><body><main class="scene">
+<div class="window"></div><div class="sign">Good<br>Things<br>Ahead ♡</div><div class="hearts"><span>💗</span><span>✨</span><span>💕</span><span>🌸</span></div>
+<div class="title">♡ A MESSAGE FOR YOU ♡</div>
+<div class="cat"><div class="cat-ear"></div><div class="cat-ear r"></div><div class="cat-body"></div><div class="cat-face">˘ ᴗ ˘</div><div class="cat-paw"></div><div class="cat-paw r"></div></div>
+<div class="printer"><div class="face"><span>●</span><span>●</span></div><div class="blush">///</div><div class="blush right">///</div><div class="bow">🎀</div><div class="slot"></div><div class="led">♡</div></div>
+<div class="paper-frame"><div class="paper" id="paper"><article class="ticket" id="welcome"><div class="avatar">💌</div><b>Welcome, lovely!</b><p>Your happy message is on its way...</p><small>♡ GOOD THINGS AHEAD ♡</small></article></div></div>
+<aside class="sidebar"><section class="panel"><h2>♡ GIFTS & PAPER ♡</h2>
+<div class="gift-row"><img src="rose.jpg" alt="Rose"><div>Rose<small class="white-mark">🤍 White</small></div></div>
+<div class="gift-row"><img src="donut.jpg" alt="Donut"><div>Donut<small class="silver-mark">🩶 Silver</small></div></div>
+<div class="gift-row"><img src="legendary.jpg" alt="Hand Heart"><div>Hand Heart<small class="gold-mark">💛 Gold</small></div></div>
+</section><section class="panel rank-panel"><h2>🏆 TOP 10 SENDERS</h2><div class="rank-list" id="ranking">Waiting for gifts...</div></section></aside>
+<div class="status" id="status">♡ Connecting to printer...</div>
+<div class="steps"><span>① 🎁 Gift received</span><span>② 🖨️ Printing</span><span>③ 💌 Done!</span></div>
+</main><script src="shared.js"></script><script>
+let last=0,count=0,busy=false,rankBusy=false;const seen=new Set(),paper=document.getElementById('paper'),statusEl=document.getElementById('status');
+function add(item){if(!item||!item.uid||seen.has(item.uid))return;
+if(item.type==='reset'){seen.clear();paper.replaceChildren();count=0;statusEl.textContent='♡ RESET · READY FOR GIFTS';return}
+seen.add(item.uid);document.getElementById('welcome')?.remove();
+const t=document.createElement('article');t.className='ticket '+(GIFT_TYPES[normalizeGift(item.gift)]?.paper||'white');
+const avatar=document.createElement('div');avatar.className='avatar';avatar.textContent=item.avatar||'🐱';
+const name=document.createElement('b');name.textContent='@'+String(item.name||'friend');
+const gift=document.createElement('div');gift.className='gift';const meta=GIFT_TYPES[normalizeGift(item.gift)]||GIFT_TYPES.rose;
+const img=document.createElement('img');img.src=meta.image;img.alt=meta.label;const txt=document.createElement('span');txt.textContent='Sent '+meta.label+' · '+meta.paper.toUpperCase();gift.append(img,txt);
+const quote=document.createElement('p');quote.textContent='“'+String(item.quote||'You are amazing!')+'”';
+const footer=document.createElement('small');footer.textContent='♡ GOOD THINGS AHEAD ♡';
+t.append(avatar,name,gift,quote,footer);paper.prepend(t);while(paper.children.length>100)paper.lastElementChild.remove();paper.scrollTop=0;statusEl.textContent='💗 '+(++count)+' HAPPY MESSAGE'+(count===1?'':'S')+' PRINTED'}
+async function refreshRank(){if(rankBusy)return;rankBusy=true;try{const entries=leaderboard(await fetchRecent(1000)),el=document.getElementById('ranking');el.replaceChildren();if(!entries.length){el.textContent='Waiting for gifts...';return}entries.forEach((x,i)=>{const r=document.createElement('div');r.className='rank';const n=document.createElement('span');n.textContent=(i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1)+'.')+' @'+x.name;const c=document.createElement('strong');c.textContent=x.count+'×';r.append(n,c);el.append(r)})}catch(e){document.getElementById('ranking').textContent='Connection error'}finally{rankBusy=false}}
+async function poll(){if(busy)return;busy=true;try{const rows=await fetchPrints(last);for(const row of rows){last=Math.max(last,Number(row.id));add(row.payload)}if(!count)statusEl.textContent='♡ READY FOR YOUR GIFTS';if(rows.length)await refreshRank()}catch(e){statusEl.textContent='⚠️ CONNECTION ERROR · RELOAD'}finally{busy=false}}
+async function start(){try{const rows=(await fetchRecent(1000)).reverse();for(const row of rows){last=Math.max(last,Number(row.id));add(row.payload)}if(!count)statusEl.textContent='♡ READY FOR YOUR GIFTS'}catch(e){statusEl.textContent='⚠️ CONNECTION ERROR · RELOAD'}await refreshRank();setInterval(poll,1200);setInterval(refreshRank,12000)}start();
+</script></body></html>
