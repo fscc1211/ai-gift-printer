@@ -1,0 +1,148 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>Laser Love Card · LIVE</title>
+<style>
+:root{--pink:#ff5cba;--ink:#77345f;--glass:#ffffffc9}
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;font-family:ui-rounded,"Arial Rounded MT Bold",system-ui,sans-serif}body{background:#140e27;color:#fff}
+.stage{position:relative;width:100%;height:100dvh;max-width:540px;margin:auto;overflow:hidden;background:radial-gradient(ellipse at 45% 42%,#553566 0%,#281c42 40%,#100d23 85%)}
+.stage:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffffbb 1px,transparent 2px),radial-gradient(#ff8fd4a0 1px,transparent 2px);background-size:37px 43px,67px 61px;background-position:5px 9px,24px 35px;opacity:.5;pointer-events:none}
+.ambient{position:absolute;left:-25%;right:-25%;top:14%;height:55%;background:radial-gradient(ellipse,#ef4fa622,transparent 65%);filter:blur(15px);pointer-events:none}
+.header{position:absolute;top:2.5%;left:4%;right:4%;text-align:center}.eyebrow{letter-spacing:3px;color:#ffb4e0;font-size:clamp(9px,2.4vw,13px);font-weight:800}.header h1{margin:3px 0;font-size:clamp(22px,6.5vw,34px);color:#fff0fa;text-shadow:0 0 15px #ff4ea9,0 0 35px #f95eac}.subtitle{font-size:clamp(10px,2.7vw,13px);color:#f9c9e5}
+.laser-head{position:absolute;z-index:7;left:22%;top:15%;width:39%;height:11%;border-radius:22px 22px 12px 12px;background:linear-gradient(125deg,#fceaff,#ac7dbd 35%,#604278 75%,#d7a2e7);border:2px solid #e8b4f2;box-shadow:0 8px 25px #0705148c,inset 0 4px 8px #fff8;display:flex;align-items:center;justify-content:center;gap:7px}
+.laser-head:before{content:"";position:absolute;left:16%;right:16%;top:-13%;height:20%;background:linear-gradient(90deg,#50385c,#f7b5ed,#50385c);border-radius:8px}
+.laser-head .lens{width:34px;height:34px;border-radius:50%;border:6px solid #cda2da;background:radial-gradient(circle,#fff 0 8%,#ff9ae0 12% 26%,#6b2b8b 40%,#1b1737 70%);box-shadow:0 0 15px #ff83d5}
+.laser-head .text{font-weight:950;letter-spacing:1px;font-size:clamp(10px,2.8vw,15px);color:#fff4ff}
+.beam{position:absolute;z-index:6;left:41.4%;top:25%;height:12%;width:3px;transform-origin:top center;background:linear-gradient(#ffedf9,#ff5cae 60%,#fff);box-shadow:0 0 8px 3px #ff4fa6,0 0 30px 7px #ff64c355;animation:laserMove 2.5s ease-in-out infinite alternate}
+.beam:after{content:"";position:absolute;bottom:-7px;left:-6px;width:15px;height:15px;border-radius:50%;background:#fff;box-shadow:0 0 11px 6px #ff70c2,0 0 30px 15px #f73f9b99}
+.stage:not(.writing) .beam{opacity:0}.stage.writing .beam{opacity:1}
+.workbench{position:absolute;top:30%;left:4%;width:66%;height:43%;border:2px solid #ae72bd;border-radius:24px;background:linear-gradient(130deg,#6b4b83,#241a3c 28%,#372044 85%,#8b5a98);box-shadow:inset 0 0 25px #130c24,0 20px 35px #060510a6,0 0 30px #f96ec833}
+.workbench:before{content:"";position:absolute;inset:4%;border:1px solid #c48dce80;border-radius:15px}
+.card-wrap{position:absolute;top:35%;left:9%;width:56%;height:32%;perspective:650px;z-index:4}
+.card{position:relative;width:100%;height:100%;padding:7% 7% 5%;border-radius:13px;overflow:hidden;transform:rotate(-4deg) rotateY(-8deg);box-shadow:12px 16px 18px #07051188,inset 0 0 0 2px #fff9;transition:background .3s;background:linear-gradient(130deg,#fff8fb,#ffedf5)}
+.card.white{background:linear-gradient(120deg,#fff,#fff3fa,#fff)}.card.silver{background:linear-gradient(125deg,#fff,#d4dce9 43%,#f9fbff 70%,#c9d3df)}.card.gold{background:linear-gradient(125deg,#fff6c9,#e3bc66 45%,#fff6d6 73%,#d5a84d)}
+.card:after{content:"";position:absolute;inset:4%;border:1.5px dashed #d77fae;border-radius:9px;pointer-events:none}
+.card-head{text-align:center;color:#b85b90;font-weight:900;font-size:clamp(8px,2.1vw,12px);letter-spacing:.5px}
+.avatar{margin:4% auto 1%;text-align:center;font-size:clamp(24px,7vw,40px);line-height:1.15}
+.username{text-align:center;color:#643252;font-size:clamp(12px,3.2vw,19px);font-weight:950;overflow-wrap:anywhere}
+.gift{text-align:center;display:flex;align-items:center;justify-content:center;gap:4px;color:#80546c;font-size:clamp(9px,2.2vw,13px)}.gift img{height:clamp(17px,4.5vw,25px);width:clamp(17px,4.5vw,25px);object-fit:contain}
+.quote{margin:6% 0 0;border-top:1.5px dashed #d783ab;padding-top:5%;text-align:center;color:#5f405a;font-size:clamp(10px,2.5vw,15px);font-weight:700;line-height:1.3;min-height:3em;white-space:pre-wrap}
+.cursor{display:inline-block;width:2px;height:1em;background:#d4489c;vertical-align:middle;animation:blink .6s step-end infinite}
+.spark{position:absolute;z-index:8;top:37%;left:39%;font-size:25px;filter:drop-shadow(0 0 8px #ffb2e8);animation:laserMove 2.5s ease-in-out infinite alternate}.stage:not(.writing) .spark{opacity:0}
+.sidebar{position:absolute;right:2%;top:29%;width:27%;bottom:15%;display:flex;flex-direction:column;gap:9px;z-index:9}
+.panel{border-radius:14px;padding:7px 5px;background:linear-gradient(135deg,#fff7fbed,#ffe2f2ed);border:2px solid #e9b6e3;box-shadow:0 6px 16px #09071866;color:var(--ink);min-height:0}
+.panel h2{margin:0 0 6px;text-align:center;font-size:clamp(9px,2.5vw,14px);color:#a73881}
+.gift-row{display:flex;align-items:center;gap:4px;padding:4px 1px;border-bottom:1px solid #efcee1;font-size:clamp(9px,2.3vw,12px);font-weight:850}.gift-row img{width:31px;height:31px;object-fit:contain;border-radius:6px}.gift-row small{display:block;font-size:9px;color:#a9779a}
+.leaders{flex:1;display:flex;flex-direction:column}.ranking{flex:1;min-height:0;overflow-y:auto}.rank{display:flex;justify-content:space-between;gap:3px;border-bottom:1px solid #efd6e5;padding:5px 2px;font-size:clamp(9px,2.3vw,12px)}.rank span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.rank b{white-space:nowrap;color:#c3448b}
+.history{position:absolute;left:5%;right:32%;bottom:15%;height:10%;border-radius:15px;background:#ffffff13;border:1px solid #edb8e555;padding:7px;color:#f8cce7;overflow:hidden}.history h3{font-size:10px;margin:0 0 5px;letter-spacing:1px}.history-items{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}.history-items span{font-size:10px;flex:0 0 auto;background:#ffffff21;border-radius:20px;padding:5px 8px}
+.status{position:absolute;bottom:8%;left:6%;right:6%;padding:10px 6px;border-radius:15px;border:1px solid #fba4d8;background:#5c285cbb;text-align:center;font-weight:900;font-size:clamp(12px,3vw,16px);box-shadow:0 0 18px #e14ca844;color:#ffe6f6}
+.progress{position:absolute;bottom:5.3%;left:7%;right:7%;height:7px;background:#ffffff30;border-radius:12px;overflow:hidden}.progress>div{width:0%;height:100%;background:linear-gradient(90deg,#ff74c5,#fff,#ff74c5);box-shadow:0 0 9px #ff9dd8;transition:width .12s linear}
+.footer{position:absolute;bottom:1.5%;width:100%;text-align:center;color:#f5b9dd;font-size:clamp(10px,2.6vw,13px)}
+@keyframes laserMove{0%{transform:translateX(-22px) rotate(-8deg)}100%{transform:translateX(24px) rotate(8deg)}}@keyframes blink{50%{opacity:0}}
+
+/* V12 — giant neon laser, pulsing card and dramatic username reveal */
+.laser-head{left:14%;top:12%;width:53%;height:15%;border:4px solid #ffe2fa;border-radius:28px;background:linear-gradient(135deg,#fff4ff,#cc86e4 24%,#683d93 65%,#26194f);box-shadow:0 0 15px #ff99ed,0 0 38px #fb4bceaa,0 13px 30px #090617,inset 0 5px 15px #fff9;animation:headPulse 1.4s ease-in-out infinite alternate}
+.laser-head .lens{width:clamp(49px,12vw,70px);height:clamp(49px,12vw,70px);flex-shrink:0;border:8px solid #e9b6ff;box-shadow:0 0 16px 7px #ff65d8,0 0 36px #ffb2ec;background:radial-gradient(circle,#fff 0 13%,#ff79e5 20%,#7023ad 48%,#171035 75%)}
+.laser-head .text{font-size:clamp(13px,3.5vw,21px);text-shadow:0 0 12px #ffb4e9}
+.beam{top:26%;left:39%;height:13%;width:8px;background:linear-gradient(#fff,#ff9deb 20%,#f900aa 80%,#fff);box-shadow:0 0 12px 7px #ff5dd9,0 0 40px 15px #e82bbb8a;animation:laserMove 1.15s ease-in-out infinite alternate}
+.beam:after{left:-11px;bottom:-13px;width:30px;height:30px;box-shadow:0 0 18px 12px #ff65d9,0 0 48px 25px #fa29af99}
+.spark{top:37%;left:37%;font-size:clamp(28px,9vw,48px);animation:laserMove 1.15s ease-in-out infinite alternate;filter:drop-shadow(0 0 18px #fff)}
+.card-wrap{top:35%;left:8%;width:59%;height:34%}
+.card{border:3px solid #fff6ff;box-shadow:0 0 14px #ff93e9,0 0 35px #ff5edc9c,0 0 75px #f346bb66,12px 16px 18px #07051188,inset 0 0 18px #fff}
+.stage.writing .card{animation:cardFlash .48s ease-in-out infinite alternate}
+.stage.complete .card{animation:cardCelebrate .32s ease-in-out 7 alternate}
+.stage.writing .card:before,.stage.complete .card:before{content:"";position:absolute;inset:-40%;pointer-events:none;background:linear-gradient(110deg,transparent 25%,#ffffffb0 43%,#fff 50%,#ffffff70 57%,transparent 75%);transform:translateX(-80%) rotate(10deg);animation:shineSweep 1.2s linear infinite;z-index:2;opacity:.6}
+.username{font-size:clamp(16px,4.3vw,26px);color:#a10d77;text-shadow:0 0 7px #ff82d3,0 0 13px #ff93e3;line-height:1.1;min-height:1.15em}
+.stage.writing .username{animation:namePulse .34s ease-in-out infinite alternate}
+.username .cursor{height:.8em;width:3px}
+.name-spotlight{position:absolute;z-index:6;left:9%;top:45%;width:57%;height:13%;pointer-events:none;opacity:0;background:radial-gradient(ellipse,#fff8 0%,#ff72df77 25%,transparent 72%);filter:blur(7px)}
+.stage.naming .name-spotlight{opacity:1;animation:namePulse .25s ease-in-out infinite alternate}
+.stage.naming .beam{top:26%;height:21%;transform:rotate(-8deg);opacity:1}
+.stage.naming .spark{top:46%;opacity:1}
+.stage.complete .beam,.stage.complete .spark{opacity:0}
+@keyframes cardFlash{0%{filter:brightness(1);box-shadow:0 0 12px #ff80df,0 0 28px #ff60c7,12px 16px 18px #07051188}100%{filter:brightness(1.28);box-shadow:0 0 23px #fff,0 0 60px #ff50cc,0 0 100px #f426c5,12px 16px 18px #07051188}}
+@keyframes cardCelebrate{to{filter:brightness(1.7) saturate(1.4);box-shadow:0 0 35px #fff,0 0 90px #ff4be2,0 0 140px #fa31ac}}
+@keyframes headPulse{to{filter:brightness(1.24);box-shadow:0 0 22px #fff,0 0 65px #ff4ad6,0 13px 30px #090617}}
+@keyframes namePulse{to{filter:brightness(1.4);text-shadow:0 0 15px #fff,0 0 24px #ff45cf}}
+@keyframes shineSweep{to{transform:translateX(80%) rotate(10deg)}}
+@media(prefers-reduced-motion:reduce){.stage.writing .card,.stage.complete .card,.stage.writing .username,.laser-head{animation:none}}
+
+/* V13 celebratory particle fireworks: contained in LIVE stage */
+.fireworks-layer{position:absolute;inset:0;z-index:30;pointer-events:none;overflow:hidden}
+.firework-flash{position:absolute;width:110px;height:110px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff 0%,var(--fire-color) 10%,transparent 68%);animation:fwFlash .48s ease-out forwards;mix-blend-mode:screen}
+.firework-particle{position:absolute;width:var(--size);height:var(--size);border-radius:50%;background:var(--fire-color);box-shadow:0 0 8px 2px var(--fire-color),0 0 20px var(--fire-color);animation:fwBurst 1.05s cubic-bezier(.08,.52,.23,1) forwards;transform:translate(-50%,-50%)}
+.firework-particle.star{border-radius:2px;transform:translate(-50%,-50%) rotate(45deg)}
+@keyframes fwBurst{0%{opacity:1;translate:0 0;scale:.5}65%{opacity:1}100%{opacity:0;translate:var(--dx) var(--dy);scale:.12}}
+@keyframes fwFlash{0%{opacity:1;scale:.35}100%{opacity:0;scale:2.5}}
+@media(prefers-reduced-motion:reduce){.firework-particle,.firework-flash{animation-duration:.1s}}
+/* V14: no laser beam or laser head; only a glowing red targeting dot before typing */
+.laser-head,.beam,.spark{display:none!important}
+.red-laser-dot{position:absolute;z-index:18;top:47%;left:34%;width:15px;height:15px;border-radius:50%;background:#fff7f2;box-shadow:0 0 0 3px #ff2828,0 0 13px 8px #ff2020,0 0 34px 17px #fa18187f;transform:translate(-50%,-50%);opacity:0;pointer-events:none}
+.stage.aiming .red-laser-dot{opacity:1;animation:redDotPulse .28s ease-in-out infinite alternate}
+@keyframes redDotPulse{from{transform:translate(-50%,-50%) scale(.75);filter:brightness(1)}to{transform:translate(-50%,-50%) scale(1.3);filter:brightness(1.6)}}
+@media(prefers-reduced-motion:reduce){.stage.aiming .red-laser-dot{animation:none}}
+</style></head><body><main class="stage" id="stage"><div class="ambient"></div><div class="fireworks-layer" id="fireworks" aria-hidden="true"></div>
+<header class="header"><div class="eyebrow">✦ THE MAGIC MESSAGE STUDIO ✦</div><h1>LASER LOVE CARDS ♡</h1><div class="subtitle">Every gift becomes a little message of light</div></header>
+<div class="red-laser-dot" aria-hidden="true"></div>
+<div class="workbench"></div><div class="name-spotlight"></div><div class="card-wrap"><article class="card white" id="card"><div class="card-head">♡ A MESSAGE FOR YOU ♡</div><div class="avatar" id="avatar">💌</div><div class="username" id="username">@yourname</div><div class="gift" id="gift">Waiting for a gift ♡</div><div class="quote" id="quote">A little magic is coming...</div></article></div>
+<aside class="sidebar"><section class="panel"><h2>🎁 GIFTS & COLORS</h2><div class="gift-row"><img src="rose.jpg" alt="Rose"><div>Rose<small>🤍 White card</small></div></div><div class="gift-row"><img src="donut.jpg" alt="Donut"><div>Donut<small>🩶 Silver card</small></div></div><div class="gift-row"><img src="legendary.jpg" alt="Hand Heart"><div>Hand Heart<small>💛 Gold card</small></div></div></section><section class="panel leaders"><h2>🏆 TOP 10 SENDERS</h2><div class="ranking" id="ranking">Waiting for gifts...</div></section></aside>
+<div class="history"><h3>✦ RECENT CARDS</h3><div class="history-items" id="history"></div></div>
+<div class="status" id="status">♡ CONNECTING TO THE MAGIC STUDIO...</div><div class="progress"><div id="progress"></div></div><div class="footer">🎁 Gift received　✦ Laser writing　💌 Card complete</div>
+</main><script src="shared.js"></script><script>
+const stage=document.getElementById('stage'),card=document.getElementById('card'),statusEl=document.getElementById('status'),quoteEl=document.getElementById('quote'),progressEl=document.getElementById('progress'),queue=[],seen=new Set();let last=0,working=false,pollBusy=false,rankBusy=false,historyCount=0;
+function wait(ms){return new Promise(resolve=>setTimeout(resolve,ms))}
+function addHistory(item){const history=document.getElementById('history');const pill=document.createElement('span');pill.textContent='💌 @'+String(item.name||'friend');history.prepend(pill);while(history.children.length>10)history.lastElementChild.remove()}
+function display(item){const meta=GIFT_TYPES[normalizeGift(item.gift)]||GIFT_TYPES.rose;card.className='card '+meta.paper;document.getElementById('avatar').textContent=item.avatar||'🐶';document.getElementById('username').textContent='@'+String(item.name||'friend');const gift=document.getElementById('gift');gift.replaceChildren();const img=document.createElement('img');img.src=meta.image;img.alt=meta.label;const label=document.createElement('span');label.textContent='Sent '+meta.label;gift.append(img,label);return String(item.quote||'You are amazing!')}
+
+// Three gold bursts for Hand Heart; two silver bursts for Donut; Rose stays unchanged.
+function fireworkBurst(color,round){
+ const layer=document.getElementById('fireworks');
+ const x=[42,29,53][round%3],y=[43,37,50][round%3];
+ const flash=document.createElement('div');flash.className='firework-flash';flash.style.left=x+'%';flash.style.top=y+'%';flash.style.setProperty('--fire-color',color);layer.append(flash);setTimeout(()=>flash.remove(),650);
+ for(let i=0;i<32;i++){
+  const p=document.createElement('i');p.className='firework-particle'+(i%4===0?' star':'');
+  const angle=(i/32)*Math.PI*2+(round*.32),radius=65+Math.random()*95;
+  p.style.left=x+'%';p.style.top=y+'%';p.style.setProperty('--fire-color',i%5===0?'#ffffff':color);
+  p.style.setProperty('--size',(3+Math.random()*5)+'px');
+  p.style.setProperty('--dx',(Math.cos(angle)*radius)+'px');p.style.setProperty('--dy',(Math.sin(angle)*radius)+'px');
+  layer.append(p);setTimeout(()=>p.remove(),1250);
+ }
+}
+async function giftFireworks(gift){
+ const type=normalizeGift(gift),bursts=type==='legendary'?3:type==='donut'?2:0;
+ if(!bursts)return;
+ const color=type==='legendary'?'#ffd34e':'#dce7ff';
+ for(let n=0;n<bursts;n++){fireworkBurst(color,n);await wait(530)}
+}
+
+async function runQueue(){
+ if(working)return;working=true;
+ while(queue.length){
+  const item=queue.shift(),quote=display(item),nameEl=document.getElementById('username');
+  const fullName='@'+String(item.name||'friend');
+  nameEl.textContent='';quoteEl.textContent='';
+  const nameCursor=document.createElement('span');nameCursor.className='cursor';nameEl.append(nameCursor);
+  stage.classList.remove('complete','writing','naming');stage.classList.add('aiming');
+  statusEl.textContent='🔴 RED LASER TARGETING '+fullName;
+  await wait(850);stage.classList.remove('aiming');stage.classList.add('writing','naming');
+  statusEl.textContent='✦ WRITING '+fullName+' ✦';
+  for(const letter of Array.from(fullName)){
+   nameEl.insertBefore(document.createTextNode(letter),nameCursor);
+   await wait(95);
+  }
+  nameCursor.remove();stage.classList.remove('naming');
+  await wait(280);
+  const span=document.createElement('span'),cursor=document.createElement('span');cursor.className='cursor';quoteEl.append(span,cursor);
+  const chars=Array.from('“'+quote+'”');
+  for(let i=0;i<chars.length;i++){
+   span.textContent+=chars[i];progressEl.style.width=Math.round((i+1)/chars.length*100)+'%';await wait(50);
+  }
+  cursor.remove();stage.classList.remove('writing');stage.classList.add('complete');
+  statusEl.textContent='✨💖 LASER CARD COMPLETE FOR '+fullName+' 💖✨';addHistory(item);
+  await giftFireworks(item.gift);
+  await wait(800);stage.classList.remove('complete');progressEl.style.width='0%';
+ }
+ working=false;if(!historyCount)statusEl.textContent='♡ READY FOR GIFTS';
+}
+function ingest(item,animate=true){if(!item||!item.uid||seen.has(item.uid))return;if(item.type==='reset'){seen.clear();queue.length=0;document.getElementById('history').replaceChildren();historyCount=0;stage.classList.remove('writing','naming','aiming','complete');statusEl.textContent='♡ RESET · READY FOR GIFTS';return}seen.add(item.uid);historyCount++;if(animate){queue.push(item);runQueue()}else{display(item);quoteEl.textContent='“'+String(item.quote||'You are amazing!')+'”';addHistory(item)}}
+async function refreshRank(){if(rankBusy)return;rankBusy=true;try{const list=leaderboard(await fetchRecent(1000)),box=document.getElementById('ranking');box.replaceChildren();if(!list.length){box.textContent='Waiting for gifts...';return}list.forEach((x,i)=>{const r=document.createElement('div');r.className='rank';const n=document.createElement('span');n.textContent=(['🥇','🥈','🥉'][i]||(i+1)+'.')+' @'+x.name;const c=document.createElement('b');c.textContent=x.count+'×';r.append(n,c);box.append(r)})}catch(e){document.getElementById('ranking').textContent='Connection error'}finally{rankBusy=false}}
+async function poll(){if(pollBusy)return;pollBusy=true;try{const rows=await fetchPrints(last);for(const row of rows){last=Math.max(last,Number(row.id));ingest(row.payload,true)}if(rows.length)await refreshRank()}catch(e){statusEl.textContent='⚠ CONNECTION ERROR'}finally{pollBusy=false}}
+async function start(){try{const rows=(await fetchRecent(1000)).reverse();for(const row of rows){last=Math.max(last,Number(row.id));ingest(row.payload,false)}statusEl.textContent='♡ READY FOR GIFTS'}catch(e){statusEl.textContent='⚠ CONNECTION ERROR'}await refreshRank();setInterval(poll,1200);setInterval(refreshRank,12000)}start();
+</script></body></html>
